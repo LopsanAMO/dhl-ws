@@ -26,9 +26,9 @@ def build_from_to(tag, zipcode, country='MX'):
     return root
 
 
-def build_pieces(pieces):
+def build_pieces(items):
     root = Element('Pieces')
-    for i, data in enumerate(pieces):
+    for i, data in enumerate(items):
         piece = Element('Piece')
         root.append(piece)
         piece.append(element('PieceID', '%i' % (i + 1)))
@@ -39,7 +39,7 @@ def build_pieces(pieces):
     return root
 
 
-def build_bkg_details():
+def build_bkg_details(items):
     """
     hace falta date
     """
@@ -50,7 +50,7 @@ def build_bkg_details():
     root.append(element('ReadyTimeGMTOffset', '+01:00'))
     root.append(element('DimensionUnit', 'CM'))
     root.append(element('WeightUnit', 'KG'))
-    root.append(build_pieces([{'height': '1', 'depth': '1', 'width': '1', 'weight': '5.0'}, {'height': '1', 'depth': '1', 'width': '1', 'weight': '6.0'}]))  # NOQA
+    root.append(build_pieces(items))
     root.append(element('PaymentAccountNumber', '980055450'))
     root.append(element('IsDutiable', 'N'))
     root.append(element('NetworkTypeCode', 'AL'))
@@ -71,7 +71,7 @@ def build_dutiable():
     return root
 
 
-def get_quote():
+def get_quote(from_zipcode, to_zipcode, items):
     xml = '<?xml version="1.0" encoding="UTF-8"?>'
     root = Element('p:DCTRequest',
                {'xmlns:p': 'http://www.dhl.com',
@@ -82,8 +82,8 @@ def get_quote():
     get_quote = Element('GetQuote')
     root.append(get_quote)
     get_quote.append(build_request())
-    get_quote.append(build_from_to('From', '22604'))
-    get_quote.append(build_bkg_details())
-    get_quote.append(build_from_to('To', '04310'))
+    get_quote.append(build_from_to('From', from_zipcode))
+    get_quote.append(build_bkg_details(items))
+    get_quote.append(build_from_to('To', to_zipcode))
     get_quote.append(build_dutiable())
     return '%s%s' % (xml, etree.tostring(root))

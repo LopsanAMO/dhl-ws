@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as etree
-from xml.etree.ElementTree import Element, ElementTree
+from xml.etree.ElementTree import Element
 
 
 def element(tag, text):

@@ -74,7 +74,7 @@ def build_dutiable():
     return root
 
 
-def get_quote(site_id, password, account_number, from_zipcode, to_zipcode, items):
+def get_quote(site_id, password, account_number, from_zipcode, to_zipcode, items):  # NOQA
     xml = '<?xml version="1.0" encoding="UTF-8"?>'
     root = Element('p:DCTRequest',
                    {'xmlns:p': 'http://www.dhl.com',

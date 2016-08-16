@@ -7,9 +7,6 @@ import jxmlease
 from .common import WSCommon
 from .helpers import get_quote
 
-FROM = '22604'
-TO = '04310'
-
 
 class DHLGetQuote(WSCommon):
 

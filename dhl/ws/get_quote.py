@@ -31,10 +31,8 @@ class DHLGetQuote(WSCommon):
         res_dict = jxmlease.parse(response._content)
         if 'res:ErrorResponse' in res_dict:
             # Response > ServiceHeader > Status > Condition > ConditionData
-            logging.error(
-                '''Error in parsing request XML: The markup in the document
-                 preceding the root element must be well-formed.''')
-            return False
+            code = res_dict['res:ErrorResponse']['Response'][
+                'Note']['Condition']['ConditionCode']
         elif 'res:DCTResponse' in res_dict:
             """
             The markup xml is ok
@@ -42,12 +40,12 @@ class DHLGetQuote(WSCommon):
             if 'Note' in res_dict['res:DCTResponse']['GetQuoteResponse']:
                 # res:DCTResponse > GetQuoteResponse > Response > Note
                 # > Condition > ConditionData
-                print(res_dict['res:DCTResponse']['GetQuoteResponse'][
-                      'Note']['Condition']['ConditionData'])
-                return False
-            print(res_dict['res:DCTResponse']['GetQuoteResponse']
-                  ['BkgDetails']['QtdShp']['ShippingCharge'])
-            return True
+                code = res_dict['res:DCTResponse']['GetQuoteResponse']['Note']['Condition']['ConditionCode']  # NOQA
+                data = res_dict['res:DCTResponse']['GetQuoteResponse']['Note']['Condition']['ConditionData']  # NOQA
+                return {"status": "error",
+                        "message": {"code": code, "data": data}}  # NOQA
+            return {"status": "ok",
+                    "amount": res_dict['res:DCTResponse']['GetQuoteResponse']['BkgDetails']['QtdShp']['ShippingCharge']}  # NOQA
 
         # Print as xml
         # root = ET.fromstring(response._content)

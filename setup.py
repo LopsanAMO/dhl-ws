@@ -14,5 +14,5 @@ setuptools.setup(name='dhl-ws',
                  license='MIT License',
                  zip_safe=False,
                  keywords='dhl xml webservices quote',
-                 install_requires=['requests'],
+                 install_requires=['requests', 'jxmlease'],
                  classifiers=['Customer Service'])

@@ -1,5 +1,8 @@
 import xml.etree.ElementTree as etree
+from datetime import datetime
 from xml.etree.ElementTree import Element
+
+date = datetime.now()
 
 
 def element(tag, text):
@@ -8,14 +11,14 @@ def element(tag, text):
     return ele
 
 
-def build_request(date=None, site_id=None, password=None):
+def build_request(site_id, password):
     root = Element('Request')
     service_header = Element('ServiceHeader')
     root.append(service_header)
-    service_header.append(element('MessageTime', '2002-08-20T11:28:56.000-08:00'))  # NOQA
+    service_header.append(element('MessageTime', date.strftime('%Y-%m-%dT%H:%M:%S-05:00')))  # NOQA
     service_header.append(element('MessageReference', '1234567890123456789012345678901'))  # NOQA
-    service_header.append(element('SiteID', 'DHLMexico'))
-    service_header.append(element('Password', 'hUv5E3nMjQz6'))
+    service_header.append(element('SiteID', site_id))
+    service_header.append(element('Password', password))
     return root
 
 
@@ -39,19 +42,19 @@ def build_pieces(items):
     return root
 
 
-def build_bkg_details(items):
+def build_bkg_details(account_number, items):
     """
     hace falta date
     """
     root = Element('BkgDetails')
     root.append(element('PaymentCountryCode', 'MX'))
-    root.append(element('Date', '2016-08-12'))
-    root.append(element('ReadyTime', 'PT10H21M'))
+    root.append(element('Date', date.strftime('%Y-%m-%d')))
+    root.append(element('ReadyTime', 'PT10H30M'))
     root.append(element('ReadyTimeGMTOffset', '+01:00'))
     root.append(element('DimensionUnit', 'CM'))
     root.append(element('WeightUnit', 'KG'))
     root.append(build_pieces(items))
-    root.append(element('PaymentAccountNumber', '980055450'))
+    root.append(element('PaymentAccountNumber', account_number))
     root.append(element('IsDutiable', 'N'))
     root.append(element('NetworkTypeCode', 'AL'))
     qtdshp = Element('QtdShp')
@@ -60,7 +63,7 @@ def build_bkg_details(items):
     qtdshp.append(element('LocalProductCode', 'N'))
     qtdshpexchrg = Element('QtdShpExChrg')
     qtdshp.append(qtdshpexchrg)
-    qtdshpexchrg.append(element('SpecialServiceType', 'AA'))
+    qtdshpexchrg.append(element('SpecialServiceType', 'N'))  # Antes AA
     return root
 
 
@@ -71,19 +74,19 @@ def build_dutiable():
     return root
 
 
-def get_quote(from_zipcode, to_zipcode, items):
+def get_quote(site_id, password, account_number, from_zipcode, to_zipcode, items):
     xml = '<?xml version="1.0" encoding="UTF-8"?>'
     root = Element('p:DCTRequest',
-               {'xmlns:p': 'http://www.dhl.com',
-                'xmlns:p1': 'http://www.dhl.com/datatypes',
-                'xmlns:p2': 'http://www.dhl.com/DCTRequestdatatypes',
-                'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-                'xsi:schemaLocation': 'http://www.dhl.com DCT-req.xsd'})
+                   {'xmlns:p': 'http://www.dhl.com',
+                    'xmlns:p1': 'http://www.dhl.com/datatypes',
+                    'xmlns:p2': 'http://www.dhl.com/DCTRequestdatatypes',
+                    'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+                    'xsi:schemaLocation': 'http://www.dhl.com DCT-req.xsd'})
     get_quote = Element('GetQuote')
     root.append(get_quote)
-    get_quote.append(build_request())
+    get_quote.append(build_request(site_id, password))
     get_quote.append(build_from_to('From', from_zipcode))
-    get_quote.append(build_bkg_details(items))
+    get_quote.append(build_bkg_details(account_number, items))
     get_quote.append(build_from_to('To', to_zipcode))
     get_quote.append(build_dutiable())
-    return '%s%s' % (xml, etree.tostring(root))
+    return '%s%s' % (xml, etree.tostring(root).decode('utf-8'))

@@ -1,3 +1,5 @@
+import os
+
 import ws
 
 
@@ -7,10 +9,10 @@ class DHL:
     """
     services = ['GetQuote', 'GetCapability']
 
-    def __init__(self, site_id, password, account_number):
-        self.site_id = site_id
-        self.password = password
-        self.account_number = account_number
+    def __init__(self):
+        self.site_id = os.getenv('DHL_SITE_ID')
+        self.password = os.getenv('DHL_PASSWORD')
+        self.account_number = os.getenv('DHL_ACCOUNT_NUMBER')
 
     def service(self, service_name, **kwargs):
         if service_name in self.services:

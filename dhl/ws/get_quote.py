@@ -44,8 +44,9 @@ class DHLGetQuote(WSCommon):
                 data = res_dict['res:DCTResponse']['GetQuoteResponse']['Note']['Condition']['ConditionData']  # NOQA
                 return {"status": "error",
                         "message": {"code": code, "data": data}}  # NOQA
-            return {"status": "ok",
-                    "amount": res_dict['res:DCTResponse']['GetQuoteResponse']['BkgDetails']['QtdShp']['ShippingCharge']}  # NOQA
+            amount = str(res_dict['res:DCTResponse']['GetQuoteResponse'][
+                'BkgDetails']['QtdShp']['ShippingCharge'])
+            return {"status": "ok", "amount": amount}
 
         # Print as xml
         # root = ET.fromstring(response._content)

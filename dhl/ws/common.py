@@ -1,7 +1,7 @@
 import requests
 
 
-class WSCommon:
+class WSCommon(object):
 
     data = None
     message = None

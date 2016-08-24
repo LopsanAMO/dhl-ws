@@ -1,9 +1,4 @@
 # import logging
-import xml.etree.ElementTree as ET
-from xml import etree
-
-import jxmlease
-
 from .common import WSCommon
 from .helpers import get_quote
 
@@ -28,7 +23,7 @@ class DHLGetQuote(WSCommon):
 
     def request(self):
         response = self.requests.post(self.url, data=self.xml_request(**self.kwargs))  # NOQA
-        res_dict = jxmlease.parse(response._content)
+        res_dict = self.jxmlease.parse(response._content)
         if 'res:ErrorResponse' in res_dict:
             # Response > ServiceHeader > Status > Condition > ConditionData
             code = res_dict['res:ErrorResponse']['Response'][
@@ -49,5 +44,5 @@ class DHLGetQuote(WSCommon):
     def request_xml(self):
         """Print as xml"""
         response = self.requests.post(self.url, data=self.xml_request(**self.kwargs))  # NOQA
-        root = ET.fromstring(response._content)
-        print(etree.ElementTree.tostring(root).decode('utf-8'))
+        root = self.ET.fromstring(response._content)
+        print(self.etree.ElementTree.tostring(root).decode('utf-8'))

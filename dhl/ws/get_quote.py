@@ -1,6 +1,6 @@
-# import xml.etree.ElementTree as ET
-# from xml import etree
 import logging
+import xml.etree.ElementTree as ET
+from xml import etree
 
 import jxmlease
 
@@ -38,8 +38,6 @@ class DHLGetQuote(WSCommon):
             The markup xml is ok
             """
             if 'Note' in res_dict['res:DCTResponse']['GetQuoteResponse']:
-                # res:DCTResponse > GetQuoteResponse > Response > Note
-                # > Condition > ConditionData
                 code = res_dict['res:DCTResponse']['GetQuoteResponse']['Note']['Condition']['ConditionCode']  # NOQA
                 data = res_dict['res:DCTResponse']['GetQuoteResponse']['Note']['Condition']['ConditionData']  # NOQA
                 return {"status": "error",
@@ -48,6 +46,8 @@ class DHLGetQuote(WSCommon):
                 'BkgDetails']['QtdShp']['ShippingCharge'])
             return {"status": "ok", "amount": amount}
 
-        # Print as xml
-        # root = ET.fromstring(response._content)
-        # print(etree.ElementTree.tostring(root).decode('utf-8'))
+    def request_xml(self):
+        """Print as xml"""
+        response = self.requests.post(self.url, data=self.xml_request(**self.kwargs))  # NOQA
+        root = ET.fromstring(response._content)
+        print(etree.ElementTree.tostring(root).decode('utf-8'))

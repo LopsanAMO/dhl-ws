@@ -1,10 +1,13 @@
+import xml.etree.ElementTree as ET
+from xml import etree
+
 import requests
 
 
 class WSCommon(object):
 
-    data = None
-    message = None
+    ET = ET
+    etree = etree
     requests = requests
 
     def __init__(self, site_id, password, account_number, service_name, **kwargs):  # NOQA

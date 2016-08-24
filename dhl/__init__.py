@@ -32,8 +32,8 @@ class DHLError(Exception):
         Exception.__init__(self, result)
 
 
-# ITEMS = [{'height': '100', 'depth': '41', 'width': '31', 'weight': '5.0'}]
-# dhl = DHL('DHLMexico', 'hUv5E3nMjQz6', '980055450')
+# ITEMS = [{'id': '40', 'height': '1000', 'depth': '41','width': '31', 'weight': '1.0'},  # NOQA
+#          {'id': '50', 'height': '1', 'depth': '41', 'width': '31', 'weight': '1.0'}]  # NOQA
 # data = {'from_zipcode': '22604', 'to_zipcode': '04310', 'items': ITEMS}
-# result = dhl.service('GetQuote', **data)
+# DHL().service('GetQuote', **data)
 # print(result)

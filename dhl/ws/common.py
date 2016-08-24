@@ -1,3 +1,4 @@
+import os
 import xml.etree.ElementTree as ET
 from xml import etree
 
@@ -9,11 +10,13 @@ class WSCommon(object):
 
     ET = ET
     etree = etree
-    requests = requests
     jxmlease = jxmlease
+    requests = requests
+    url = 'http://xmlpi-ea.dhl.com/XMLShippingServlet'
 
-    def __init__(self, site_id, password, account_number, service_name, **kwargs):  # NOQA
-        self.site_id = site_id
-        self.password = password
-        self.account_number = account_number
+    def __init__(self, service_name, **kwargs):  # NOQA
+        self.account_number = os.getenv('DHL_ACCOUNT_NUMBER')
+        self.kwargs = self.kwargs
+        self.password = os.getenv('DHL_PASSWORD')
         self.service_name = service_name
+        self.site_id = os.getenv('DHL_SITE_ID')

@@ -16,7 +16,7 @@ class WSCommon(object):
 
     def __init__(self, service_name, **kwargs):  # NOQA
         self.account_number = os.getenv('DHL_ACCOUNT_NUMBER')
-        self.kwargs = self.kwargs
+        self.kwargs = kwargs
         self.password = os.getenv('DHL_PASSWORD')
         self.service_name = service_name
         self.site_id = os.getenv('DHL_SITE_ID')

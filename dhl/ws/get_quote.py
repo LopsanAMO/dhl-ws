@@ -5,11 +5,8 @@ from .helpers import get_quote
 
 class DHLGetQuote(WSCommon):
 
-    url = 'http://xmlpi-ea.dhl.com/XMLShippingServlet'
-
-    def __init__(self, site_id, password, account_number, service_name, **kwargs):  # NOQA
-        super(DHLGetQuote, self).__init__(site_id, password, account_number, service_name, **kwargs)  # NOQA
-        self.kwargs = kwargs
+    def __init__(self, service_name, **kwargs):
+        super(DHLGetQuote, self).__init__(service_name, **kwargs)
 
     def xml_request(self, **kwargs):
         from_zipcode = kwargs.pop('from_zipcode', None)

@@ -1,4 +1,4 @@
-import logging
+# import logging
 import xml.etree.ElementTree as ET
 from xml import etree
 
@@ -21,7 +21,7 @@ class DHLGetQuote(WSCommon):
         to_zipcode = kwargs.pop('to_zipcode', None)
         items = kwargs.pop('items', None)
         if not from_zipcode or not to_zipcode or not items:
-            logging.warning('No se recibieron los parametros necesarios')
+            # logging.warning('No se recibieron los parametros necesarios')
             return False
         return get_quote(self.site_id, self.password, self.account_number,
                          from_zipcode, to_zipcode, items)

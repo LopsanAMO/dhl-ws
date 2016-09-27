@@ -8,8 +8,7 @@ class DHLTracking(WSCommon):
         super(DHLTracking, self).__init__(service_name, **kwargs)
 
     def xml_request(self, **kwargs):
-        # awbnumber = kwargs.pop('awbnumber', None)
-        awbnumber = '9618862131'
+        awbnumber = kwargs.pop('awbnumber', None)
         if not awbnumber:
             return False
         return tracking(self.site_id, self.password, awbnumber)

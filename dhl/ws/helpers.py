@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import xml.etree.ElementTree as etree
 from datetime import datetime
 from xml.etree.ElementTree import Element

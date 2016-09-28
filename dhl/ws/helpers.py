@@ -120,7 +120,7 @@ def contact(data):
     root = Element('Contact')
     root.append(element('PersonalName', data['personal_name']))
     root.append(element('PhoneNumber', data['phone_number']))
-    root.append(element('PhoneExtension', ''))
+    root.append(element('PhoneExtension', ' '))
     root.append(element('Email', data['email']))
     return root
 

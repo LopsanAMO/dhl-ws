@@ -14,7 +14,7 @@ class WSCommon(object):
     requests = requests
     url = 'http://xmlpi-ea.dhl.com/XMLShippingServlet'
 
-    def __init__(self, service_name, **kwargs):  # NOQA
+    def __init__(self, service_name, **kwargs):
         self.account_number = os.getenv('DHL_ACCOUNT_NUMBER')
         self.kwargs = kwargs
         self.password = os.getenv('DHL_PASSWORD')

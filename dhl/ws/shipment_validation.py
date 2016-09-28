@@ -17,7 +17,7 @@ class DHLShipmentValidation(WSCommon):
         return shipping_guide(data)
 
     def request(self):
-        response = self.requests.post(self.url,
-                                      data=self.xml_request(self.kwargs))
+        xml_request = self.xml_request(self.kwargs)
+        response = self.requests.post(self.url, data=xml_request)
         res_dict = self.jxmlease.parse(response._content)
-        return res_dict
+        return xml_request, res_dict

@@ -36,10 +36,10 @@ def build_pieces(items):
         piece = Element('Piece')
         root.append(piece)
         piece.append(element('PieceID', '%i' % (i + 1)))
+        piece.append(element('Weight', data['weight']))
+        piece.append(element('Width', data['width']))
         piece.append(element('Height', data['height']))
         piece.append(element('Depth', data['depth']))
-        piece.append(element('Width', data['width']))
-        piece.append(element('Weight', data['weight']))
     return root
 
 
@@ -118,9 +118,9 @@ def billing(account_number):
 
 def contact(data):
     root = Element('Contact')
-    root.append(element('PersonalName', data['personal_name']))
+    root.append(element('PersonName', data['personal_name']))
     root.append(element('PhoneNumber', data['phone_number']))
-    root.append(element('PhoneExtension', ' '))
+    # root.append(element('PhoneExtension', ' '))
     root.append(element('Email', data['email']))
     return root
 
@@ -128,7 +128,7 @@ def contact(data):
 def consignee(data):
     # Info del destinatario
     root = Element('Consignee')
-    root.append(element('CompanyName', ''))
+    root.append(element('CompanyName', data['contact']['personal_name']))
     root.append(element('AddressLine', data['line_1']))
     root.append(element('AddressLine', data['line_2']))
     root.append(element('AddressLine', data['line_3']))

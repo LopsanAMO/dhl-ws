@@ -5,7 +5,7 @@ class DHL:
     """
     Provee y centraliza la carga de los servicios DHL
     """
-    services = ['GetQuote', 'GetCapability', 'Tracking']
+    services = ['GetQuote', 'GetCapability', 'Tracking', 'ShipmentValidation']
 
     def service(self, service_name, **kwargs):
         if service_name in self.services:

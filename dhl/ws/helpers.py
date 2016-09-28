@@ -142,7 +142,7 @@ def consignee(data):
 
 def shipment_details(data):
     root = Element('ShipmentDetails')
-    root.append(element('NumberOfPieces'))
+    root.append(element('NumberOfPieces', str(len(data['items']))))
     root.append(build_pieces(data['items']))
     # peso total de la suma de pesos de items
     root.append(element('Weight', data['total_weight']))

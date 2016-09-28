@@ -43,6 +43,19 @@ def build_pieces(items):
     return root
 
 
+def build_pieces_rate(items):
+    root = Element('Pieces')
+    for i, data in enumerate(items):
+        piece = Element('Piece')
+        root.append(piece)
+        piece.append(element('PieceID', '%i' % (i + 1)))
+        piece.append(element('Height', data['height']))
+        piece.append(element('Depth', data['depth']))
+        piece.append(element('Width', data['width']))
+        piece.append(element('Weight', data['weight']))
+    return root
+
+
 def build_bkg_details(account_number, items):
     """
     hace falta date
@@ -54,7 +67,7 @@ def build_bkg_details(account_number, items):
     root.append(element('ReadyTimeGMTOffset', '+01:00'))
     root.append(element('DimensionUnit', 'CM'))
     root.append(element('WeightUnit', 'KG'))
-    root.append(build_pieces(items))
+    root.append(build_pieces_rate(items))
     root.append(element('PaymentAccountNumber', account_number))
     root.append(element('IsDutiable', 'N'))
     root.append(element('NetworkTypeCode', 'AL'))

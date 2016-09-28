@@ -4,6 +4,8 @@ from .helpers import shipping_guide
 
 class DHLShipmentValidation(WSCommon):
 
+    url = 'http://xmlpitest-ea.dhl.com/XMLShippingServlet'
+
     def __init__(self, service_name, **kwargs):
         super(DHLShipmentValidation, self).__init__(service_name, **kwargs)
 

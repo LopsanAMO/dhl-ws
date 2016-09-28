@@ -176,7 +176,7 @@ def shipment_details(data):
 def shipper(account_number, data):
     root = Element('Shipper')
     root.append(element('ShipperID', account_number))
-    root.append(element('CompanyName', ''))
+    root.append(element('CompanyName', data['contact']['personal_name']))
     root.append(element('RegisteredAccount', account_number))
     root.append(element('AddressLine', data['line_1']))
     root.append(element('AddressLine', data['line_2']))

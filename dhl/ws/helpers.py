@@ -194,8 +194,7 @@ def shipping_guide(data):
     root = Element('req:ShipmentRequest',
                    {'xmlns:req': 'http://www.dhl.com',
                     'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-                    'xsi:schemaLocation': 'http://www.dhl.com ship-val-global-req.xsd',  # NOQA
-                    'schemaVersion': '4.0'})
+                    'xsi:schemaLocation': 'http://www.dhl.com ship-val-global-req.xsd'})  # NOQA
     root.append(build_request(data['site_id'], data['password']))
     root.append(element('RegionCode', 'AM'))
     root.append(element('RequestedPickupTime', 'N'))

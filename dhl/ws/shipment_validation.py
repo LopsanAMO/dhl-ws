@@ -1,5 +1,5 @@
 from .common import WSCommon
-from .helpers import shipping_guide
+from ..helpers import shipping_guide
 
 
 class DHLShipmentValidation(WSCommon):

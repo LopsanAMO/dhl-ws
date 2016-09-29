@@ -1,5 +1,5 @@
 from common import WSCommon
-from helpers import tracking
+from ..helpers import tracking
 
 
 class DHLTracking(WSCommon):

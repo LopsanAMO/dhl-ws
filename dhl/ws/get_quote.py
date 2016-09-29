@@ -1,6 +1,6 @@
 # import logging
 from .common import WSCommon
-from .helpers import get_quote
+from ..helpers import get_quote
 
 
 class DHLGetQuote(WSCommon):

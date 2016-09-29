@@ -1,3 +1,3 @@
-from .get_quote import DHLGetQuote  # NOQA
-from .shipment_validation import DHLShipmentValidation  # NOQA
-from .tracking import DHLTracking  # NOQA
+from .rates import DHLGetQuote  # NOQA
+from .trackings import DHLTracking  # NOQA
+from .waybills import DHLShipmentValidation  # NOQA

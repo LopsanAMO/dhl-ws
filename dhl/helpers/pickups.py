@@ -14,13 +14,13 @@ def shipment_details(data):
     root = Element('ShipmentDetails')
     root.append(element('AccountType', 'D'))
     root.append(element('AccountNumber', data['account_number']))
-    root.append(element('BillToAccountNumber', data['account_number']))
-    root.append(element('NumberOfPieces', data['pieces']['number']))
-    root.append(element('Weight', data['pieces']['weight']))
+    root.append(element('BillToAccountNumber', data['details']['account_number']))  # NOQA
+    root.append(element('NumberOfPieces', data['details']['pieces']['number']))
+    root.append(element('Weight', data['details']['pieces']['weight']))
     root.append(element('WeightUnit', 'K'))
     root.append(element('DoorTo', 'DD'))
     root.append(element('DimensionUnit', 'C'))
-    root.append(pieces(data['pieces']))
+    root.append(pieces(data['details']['pieces']))
     return root
 
 
@@ -75,5 +75,5 @@ def pickup(data):
     root.append(place(data['place']))
     root.append(pickup_info(data['details']))
     root.append(contact(data['contact']))
-    root.append(shipment_details(data['details']))
+    root.append(shipment_details(data))
     return '%s%s' % (xml, etree.tostring(root).decode('utf-8'))

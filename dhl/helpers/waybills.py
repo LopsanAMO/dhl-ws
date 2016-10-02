@@ -19,7 +19,7 @@ def billing(account_number):
     root.append(element('ShipperAccountNumber', account_number))
     root.append(element('ShippingPaymentType', 'T'))  # question to Sebastien
     root.append(element('BillingAccountNumber', account_number))
-    # Solo aplica para envíos internacionales
+    # Solo aplica para envios internacionales
     # root.append(element('DutyPaymentType', 'R'))
     # Si los impuestos los paga el shipper, indicar el numero de cuenta al
     # cual se hará el cargo.

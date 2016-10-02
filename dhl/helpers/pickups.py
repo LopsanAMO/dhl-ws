@@ -73,7 +73,7 @@ def pickup(data):
     root.append(build_request(data['site_id'], data['password']))
     root.append(requestor(data['account_number']))
     root.append(place(data['place']))
-    root.append(pickup_info(data['pickup_info']))
+    root.append(pickup_info(data['details']))
     root.append(contact(data['contact']))
     root.append(shipment_details(data['details']))
     return '%s%s' % (xml, etree.tostring(root).decode('utf-8'))

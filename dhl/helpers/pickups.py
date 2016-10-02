@@ -36,9 +36,9 @@ def pickup_info(data):
     root.append(element('PickupDate', data['pickup_date']))
     root.append(element('PickupByTime', data['pickup_time']))
     root.append(element('CloseTime', data['pickup_close']))
-    root.append(element('Pieces', data['pieces']))
+    root.append(element('Pieces', data['pieces']['number']))
     weight = Element('weight')
-    weight.append(element('Weight', data['weight_total']))
+    weight.append(element('Weight', data['pieces']['weight']))
     weight.append(element('WeightUnit', 'K'))
     root.append(weight)
     return root

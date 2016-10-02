@@ -34,7 +34,7 @@ def contact(data):
 def pickup_info(data):
     root = Element('Pickup')
     root.append(element('PickupDate', data['pickup_date']))
-    root.append(element('PickupByTime', data['pickup_time']))
+    root.append(element('ReadyByTime', data['pickup_time']))
     root.append(element('CloseTime', data['pickup_close']))
     root.append(element('Pieces', data['pieces']['number']))
     weight = Element('weight')

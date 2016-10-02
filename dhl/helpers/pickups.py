@@ -14,7 +14,7 @@ def shipment_details(data):
     root = Element('ShipmentDetails')
     root.append(element('AccountType', 'D'))
     root.append(element('AccountNumber', data['account_number']))
-    root.append(element('BillToAccountNumber', data['details']['account_number']))  # NOQA
+    root.append(element('BillToAccountNumber', data['account_number']))  # NOQA
     root.append(element('NumberOfPieces', data['details']['pieces']['number']))
     root.append(element('Weight', data['details']['pieces']['weight']))
     root.append(element('WeightUnit', 'K'))

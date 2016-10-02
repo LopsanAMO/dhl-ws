@@ -1,5 +1,5 @@
 from .common import WSCommon
-from ..helpers import pickups
+from ..helpers import pickup
 
 
 class DHLPickup(WSCommon):
@@ -11,7 +11,7 @@ class DHLPickup(WSCommon):
         data['site_id'] = self.site_id
         data['password'] = self.password
         data['account_number'] = self.account_number
-        return pickups(data)
+        return pickup(data)
 
     def request(self):
         xml_request = self.xml_request(self.kwargs)

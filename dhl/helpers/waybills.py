@@ -1,4 +1,6 @@
-from .common import Element, build_request, date, element, etree
+from datetime import datetime
+
+from .common import Element, build_request, element, etree
 
 
 def build_pieces(items):
@@ -60,7 +62,7 @@ def shipment_details(data):
     root.append(element('WeightUnit', 'K'))
     root.append(element('GlobalProductCode', 'N'))
     root.append(element('LocalProductCode', 'N'))
-    root.append(element('Date', date.strftime('%Y-%m-%d')))
+    root.append(element('Date', datetime.now().strftime('%Y-%m-%d')))
     root.append(element('Contents', 'DOCUMENTO NACIONAL'))
     root.append(element('DoorTo', 'DD'))
     root.append(element('DimensionUnit', 'C'))

@@ -1,4 +1,6 @@
-from .common import Element, build_request, date, element, etree
+from datetime import datetime
+
+from .common import Element, build_request, element, etree
 
 
 def build_from_to(tag, zipcode, country='MX'):
@@ -27,7 +29,7 @@ def build_bkg_details(account_number, items):
     """
     root = Element('BkgDetails')
     root.append(element('PaymentCountryCode', 'MX'))
-    root.append(element('Date', date.strftime('%Y-%m-%d')))
+    root.append(element('Date', datetime.now().strftime('%Y-%m-%d')))
     root.append(element('ReadyTime', 'PT10H30M'))
     root.append(element('ReadyTimeGMTOffset', '+01:00'))
     root.append(element('DimensionUnit', 'CM'))

@@ -1,4 +1,4 @@
-from .common import Element, build_request, date, element, etree
+from .common import Element, build_request, element, etree
 
 
 def tracking(site_id, password, awbnumber):

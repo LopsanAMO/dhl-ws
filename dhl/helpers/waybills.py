@@ -108,4 +108,4 @@ def shipping_guide(data):
     root.append(element('EProcShip', 'N'))
     root.append(element('LabelImageFormat', 'PDF'))
     prev = '%s%s' % (xml, etree.tostring(root).decode('utf-8'))
-    return prev.replace('ship-val-global-req.xsd"', 'ship-val-global-req.xsd" schemaVersion="4.0"')  # NOQA
+    return prev.replace('ship-val-global-req.xsd"', 'ship-val-global-req.xsd" schemaVersion="4.0"').replace('\', '') # NOQA

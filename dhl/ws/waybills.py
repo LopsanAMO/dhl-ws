@@ -19,5 +19,8 @@ class DHLShipmentValidation(WSCommon):
     def request(self):
         xml_request = self.xml_request(self.kwargs)
         response = self.requests.post(self.url, data=xml_request)
-        res_dict = self.jxmlease.parse(response._content)
+        try:
+            res_dict = self.jxmlease.parse(response._content)
+        except:
+            res_dict = {}
         return xml_request, res_dict

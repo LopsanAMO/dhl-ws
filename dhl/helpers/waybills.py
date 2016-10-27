@@ -107,8 +107,7 @@ def shipping_guide(data):
     root.append(shipper(data['account_number'], data['shipper']))
     root.append(element('EProcShip', 'N'))
     root.append(element('LabelImageFormat', 'PDF'))
-    prev = '%s%s' % (xml, etree.tostring(root).decode('utf-8'))
-    prev = prev.replace('ship-val-global-req.xsd"', 'ship-val-global-req.xsd" schemaVersion="4.0"')  # NOQA
-    prev = prev.replace('/\\/', '')
-    print prev
-    return prev
+    prev = "{}{}".format(xml, etree.tostring(root).decode('utf-8'))
+    result = prev.replace('ship-val-global-req.xsd"', 'ship-val-global-req.xsd" schemaVersion="4.0"')  # NOQA
+    print result
+    return result

@@ -1,4 +1,4 @@
-from common import WSCommon
+from .common import WSCommon
 from ..helpers import tracking
 
 

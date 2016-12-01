@@ -1,4 +1,4 @@
-import ws
+from . import ws
 
 
 class DHL:

@@ -1,5 +1,7 @@
 from . import ws
 
+__all__ = ['dhl']
+
 
 class DHL:
     """
@@ -22,8 +24,4 @@ class DHLError(Exception):
         Exception.__init__(self, result)
 
 
-# ITEMS = [{'id': '40', 'height': '1000', 'depth': '41', 'width': '31', 'weight': '1.0'},  # NOQA
-#          {'id': '50', 'height': '1', 'depth': '41', 'width': '31', 'weight': '1.0'}]  # NOQA
-# kwargs = {'from_zipcode': '22604', 'to_zipcode': '04310', 'items': ITEMS}
-# result = DHL().service('GetQuote', **kwargs)
-# print(result)
+dhl = DHL()
